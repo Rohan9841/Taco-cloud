@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 /*This is a special test annotation provided by Spring Boot that arranges for the test to run in
 the context of a Spring MVC application.*/
-@WebMvcTest(HomeController.class)
+@WebMvcTest
 public class HomeControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
