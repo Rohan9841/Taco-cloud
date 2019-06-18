@@ -5,7 +5,7 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-06-18T13:53:46Z</updated>
+  <updated>2019-06-18T13:53:00Z</updated>
   <entry>
     <title>Spring Cloud Open Service Broker 3.0.2 Released</title>
     <link rel="alternate" href="https://spring.io/blog/2019/06/18/spring-cloud-open-service-broker-3-0-2-released" />
@@ -14,11 +14,11 @@
       <name>Roy Clarkson</name>
     </author>
     <id>tag:spring.io,2019-06-18:3717</id>
-    <updated>2019-06-18T13:53:46Z</updated>
+    <updated>2019-06-18T13:53:00Z</updated>
     <content type="html">&lt;p&gt;We are pleased to announce the 3.0.2 release of Spring Cloud Open Service Broker. This is a maintenance release that includes the following &lt;a href="https://github.com/spring-cloud/spring-cloud-open-service-broker/issues?q=is%3Aclosed+milestone%3A3.0.2.RELEASE"&gt;updates&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Return correct HTTP status when the X-Broker-API-Version header doesn&amp;rsquo;t exist&lt;/li&gt;
-  &lt;li&gt;Return correct HTTP status when missing certain required fields and query parameteres&lt;/li&gt;
+  &lt;li&gt;Return correct HTTP status when missing certain required fields and query parameters&lt;/li&gt;
   &lt;li&gt;Fix support for service instance binding getLastOperation&lt;/li&gt;
   &lt;li&gt;Return correct HTTP status when attempting to retrieve non-existant service instance or service instance binding&lt;/li&gt;
 &lt;/ul&gt;
