@@ -41,7 +41,7 @@ public class OrderController {
 
 	// @Valid will check if there are any validation errors
 	//@ModelAttribute("order") indicates that "order" model attribute is populated with the data from the orderForm submission before process order is executed
-	public String processOrder(@Valid @ModelAttribute("order") Order order, Errors errors) {
+	public String processOrder(@Valid Order order, Errors errors) {
 
 		if (errors.hasErrors()) {
 			return "orderForm";

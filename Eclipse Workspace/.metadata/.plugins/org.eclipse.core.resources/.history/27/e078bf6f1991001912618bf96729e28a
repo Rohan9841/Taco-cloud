@@ -1,0 +1,87 @@
+package tacos.data;
+
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Arrays;
+import java.util.Date;
+
+import javax.management.Query;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import tacos.Ingredient;
+import tacos.Taco;
+
+@Repository
+public class JdbcTacoRepository implements TacoRepository {
+
+	private JdbcTemplate jdbc;
+
+	@Autowired
+	public JdbcTacoRepository(JdbcTemplate jdbc) {
+		this.jdbc = jdbc;
+	}
+
+	@Override
+	public Taco save(Taco taco) {
+		/* The key that is returned from saveTacoInfo() is stored as a tacoId variable*/
+		long tacoId = saveTacoInfo(taco);
+		
+		/* Sets the value in tacoId as an id property of Taco class */
+		taco.setId(tacoId);
+		
+		/*
+		 * for each ingredient selected by the user and stored in Taco object which is
+		 * provided by taco.getIngredients(), call saveIngredientToTaco() method to save the tacoId and 
+		 * the selected ingredients to the Taco_Ingredients table.
+		 */ 
+		for (Ingredient ingredient : taco.getIngredients()) {
+			saveIngredientToTaco(ingredient, tacoId);
+		}
+		return taco;
+	}
+	
+	/*
+	 * This method accepts Taco object and returns a unique key that is set as it's
+	 * id
+	 */
+	private long saveTacoInfo(Taco taco) {
+		/* sets the createdAt property of taco class */
+		taco.setCreatedAt(new Date());
+		
+		/*
+		 * Prepares a statement that will be passed in update method and inserts the
+		 * taco name and created date to 'name' and 'createdAt' field of 'Taco' table
+		 */
+		PreparedStatementCreator psc = new PreparedStatementCreatorFactory(
+					"insert into Taco(name,createdAt) values (?,?)", Types.VARCHAR, Types.TIMESTAMP
+				).newPreparedStatementCreator(
+								Arrays.asList(taco.getName(), new Timestamp(taco.getCreatedAt().getTime()))
+								);
+		
+		/* Provides the auto generated keys */
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		/*
+		 * Passes the psc and keyHolder in the jdbc update method to execute the Query.
+		 * I don't know why keyHolder is passed
+		 */		jdbc.update(psc, keyHolder);
+
+		/*returns the unique key provided by keyHolder which will be set as the tacoId*/
+		return keyHolder.getKey().longValue();
+	}
+
+	/*
+	 * Method to insert ingredients and unique tacodId that are provided as parameter
+	 * to the 'ingredient' and 'taco' field of 'Taco_Ingredients' table
+	 */ 
+	private void saveIngredientToTaco(Ingredient ingredient, Long tacoId) {
+		jdbc.update("insert into Taco_Ingredients(taco,ingredient)" + "values(?,?)", tacoId, ingredient.getId());
+	}
+
+}

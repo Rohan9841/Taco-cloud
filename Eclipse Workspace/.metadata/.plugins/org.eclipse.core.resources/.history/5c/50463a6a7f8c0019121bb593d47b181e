@@ -1,0 +1,25 @@
+package tacos.data;
+
+import tacos.Ingredient;
+
+public class JdbcIngredientRepository implements IngredientRepository {
+
+	@Override
+	public Iterable<Ingredient> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ingredient findOne(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ingredient save(Ingredient ingredient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -16,7 +16,7 @@
         <!-- no th:action so redirect to same url as get request i.e /design -->
         <!-- ${design} is a model attribute with value of new Taco() -->
         <!-- new Taco() has name and list of ingredients -->
-        <form method = "POST" th:object = "${design}">
+        <form method = "POST" th:object = "${taco}">
 
             <!-- If there are any validation error in the ingredients field from Taco class, then display the error message that was written in the Taco class of ingredients field -->
             <span class = "validationError"
@@ -24,7 +24,7 @@
                 th:errors = "*{ingredients}">Ingredient Error</span>
 
             <div class = "grid">
-                <div class = "ingredient=group" id = "wraps">
+                <div class = "ingredient-group" id = "wraps">
                     <h3>Designate your wrap:</h3>
                     <!-- ${wrap} is a request attribute copied automatically from model attribute which can be directly accessed by thymeleaf-->
                     <!-- $ sign is used to access an attribute in thymeleaf -->

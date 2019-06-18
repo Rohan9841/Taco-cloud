@@ -1,6 +1,8 @@
 package tacos.web;
 
 import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -8,27 +10,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import lombok.extern.slf4j.Slf4j;
 import tacos.Order;
+import tacos.data.OrderRepository;
 
-/*creates SLF4J logger object at runtime*/
-@Slf4j
 @Controller
 
 /* specifies that this class handles requests whose path begins with /orders */
 @RequestMapping("/orders")
+
+@SessionAttributes("order")
 public class OrderController {
 
+	private OrderRepository orderRepo;
+	
+	@Autowired
+	public OrderController(OrderRepository orderRepo) {
+		this.orderRepo = orderRepo;
+	}
 	/*
 	 * specifies that orderForm() method will handle get requests for
 	 * /orders/current
 	 */
 	@GetMapping("/current")
 	public String orderForm(Model model) {
-
-		// adding "order" attribute to model which is a new Order() object
-		model.addAttribute("order", new Order());
+		
 		/* orderForm is a viewName */
 		return "orderForm";
 	}
@@ -40,13 +49,21 @@ public class OrderController {
 	@PostMapping
 
 	// @Valid will check if there are any validation errors
-	//@ModelAttribute("order") indicates that "order" model attribute is populated with the data from the orderForm submission before process order is executed
-	public String processOrder(@Valid @ModelAttribute("order") Order order, Errors errors) {
+	/*
+	 * this order is submitted from the form with filled input value which is also
+	 * the same order in the session. This is received from the request attribute and not model
+	 * 
+	 * sessionStatus is set to complete because we need to clear the previous order for new order to begin
+	 * 
+	 * 
+	 */
+	public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
 
 		if (errors.hasErrors()) {
 			return "orderForm";
 		}
-		log.info("Order Submitted: " + order);
+		orderRepo.save(order);
+		sessionStatus.setComplete();
 		return "redirect:/";
 	}
 }
