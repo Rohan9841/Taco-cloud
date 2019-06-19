@@ -5,7 +5,135 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2019-06-18T13:53:00Z</updated>
+  <updated>2019-06-18T16:38:00Z</updated>
+  <entry>
+    <title>Spring Session Corn-M2 and Spring Session Bean-SR6 Released</title>
+    <link rel="alternate" href="https://spring.io/blog/2019/06/18/spring-session-corn-m2-and-spring-session-bean-sr6-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Rob Winch</name>
+    </author>
+    <id>tag:spring.io,2019-06-18:3718</id>
+    <updated>2019-06-18T16:38:00Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;em&gt;This post was authored by &lt;a href="https://github.com/vpavic"&gt;Vedran Pavi?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;On behalf of the community I’m pleased to announce the releases of Spring Session &lt;code&gt;Corn-M2&lt;/code&gt; and &lt;code&gt;Bean-SR6&lt;/code&gt;. These releases will be picked up by Spring Boot &lt;code&gt;2.2.0.M4&lt;/code&gt; and &lt;code&gt;2.1.6.RELEASE&lt;/code&gt;, respectively.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="spring-session-corn-m2"&gt;&lt;a class="anchor" href="#spring-session-corn-m2"&gt;&lt;/a&gt;Spring Session &lt;code&gt;Corn-M2&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;Corn-M2&lt;/code&gt; release is based on:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session core modules &lt;code&gt;2.2.0.M2&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session Data Geode &lt;code&gt;2.2.0.M2&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session Data MongoDB &lt;code&gt;2.2.0.M3&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Some of the highlights of Spring Session &lt;code&gt;2.2.0.M2&lt;/code&gt; are:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;simple Redis-based implementation of &lt;code&gt;SessionRepository&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;reworked &lt;code&gt;@Configuration&lt;/code&gt; classes are now compatible with &lt;code&gt;proxyBeanMethods=false&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;migration of project&amp;#8217;s tests to JUnit 5&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;simplified project structure&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Complete details of these releases can be found in &lt;a href="https://github.com/spring-projects/spring-session/milestone/61?closed=1"&gt;the changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="simpleredisoperationssessionrepository"&gt;&lt;a class="anchor" href="#simpleredisoperationssessionrepository"&gt;&lt;/a&gt;&lt;code&gt;SimpleRedisOperationsSessionRepository&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The biggest highlight of the release is the new, simple, Redis-based implementation of &lt;code&gt;SessionRepository&lt;/code&gt; that&amp;#8217;s offered as an alternative to the well known &lt;code&gt;RedisOperationsSessionRepository&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The original &lt;code&gt;RedisOperationsSessionRepository&lt;/code&gt;, on top of core &lt;code&gt;SessionRepository&lt;/code&gt; functionality, provides support for session events (that are translated to &lt;code&gt;HttpSessionEvent&lt;/code&gt; instances) and also implements &lt;code&gt;FindByIndexNameSessionRepository&lt;/code&gt; (that allows retrieval of sessions for a given principal). The support for these two features comes at a cost, as there&amp;#8217;s some complexity around how the sessions need to be &lt;a href="https://docs.spring.io/spring-session/docs/current/reference/html5/#api-redisoperationssessionrepository-storage"&gt;persisted in Redis&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For many applications, support for session events and principal index isn&amp;#8217;t essential and this was the main motivation for providing an alternative in &lt;code&gt;SimpleRedisOperationsSessionRepository&lt;/code&gt;. The new &lt;code&gt;SessionRepository&lt;/code&gt; does not yet have a first-class support in Spring Session&amp;#8217;s configuration infrastructure, so it can be configured as follows:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@EnableSpringHttpSession
+public class RedisSessionConfiguration {
+
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+
+    @Bean
+    public RedisOperations&amp;lt;String, Object&amp;gt; sessionRedisOperations() {
+        RedisTemplate&amp;lt;String, Object&amp;gt; redisTemplate = new RedisTemplate&amp;lt;&amp;gt;();
+        redisTemplate.setConnectionFactory(this.redisConnectionFactory);
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        return redisTemplate;
+    }
+
+    @Bean
+    public SimpleRedisOperationsSessionRepository sessionRepository(
+            RedisOperations&amp;lt;String, Object&amp;gt; sessionRedisOperations) {
+        return new SimpleRedisOperationsSessionRepository(sessionRedisOperations);
+    }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Consider giving &lt;code&gt;Corn-M2&lt;/code&gt; release and &lt;code&gt;SimpleRedisOperationsSessionRepository&lt;/code&gt; a spin, and let us know of your feedback!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="spring-session-bean-sr6"&gt;&lt;a class="anchor" href="#spring-session-bean-sr6"&gt;&lt;/a&gt;Spring Session &lt;code&gt;Bean-SR6&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;Bean-SR6&lt;/code&gt; release is based on:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session core modules &lt;code&gt;2.1.7.RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session Data Geode &lt;code&gt;2.1.4.RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Session Data MongoDB &lt;code&gt;2.1.4.RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Session &lt;code&gt;2.1.7.RELEASE&lt;/code&gt; is maintenance release that brings a couple of bug fixes together with the usual dependency upgrades. Complete details of these releases can be found in &lt;a href="https://github.com/spring-projects/spring-session/milestone/62?closed=1"&gt;the changelog&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://projects.spring.io/spring-session/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-session/docs/2.2.0.M2/reference/html5/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-session/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-session"&gt;Gitter&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-session"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Cloud Open Service Broker 3.0.2 Released</title>
     <link rel="alternate" href="https://spring.io/blog/2019/06/18/spring-cloud-open-service-broker-3-0-2-released" />
@@ -1028,228 +1156,6 @@ dependencies {&#xD;
     <content type="html">&lt;p&gt;Hi Spring fans! In this episode I talk to Go-lang and Kubernetes-legend Verónica Lopez about community, physics, distributed systems and more.&lt;/p&gt;
 &lt;p&gt;Verónica on Twitter &lt;a href="http://twitter.com/maria_fibonacci"&gt;@maria_fibonacci&lt;/a&gt;&lt;/p&gt;
 &lt;iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/629305281&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"&gt;&lt;/iframe&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>Introducing Spring Cloud App Broker</title>
-    <link rel="alternate" href="https://spring.io/blog/2019/05/30/introducing-spring-cloud-app-broker" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Roy Clarkson</name>
-    </author>
-    <id>tag:spring.io,2019-05-30:3698</id>
-    <updated>2019-05-30T15:58:12Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;We recently announced the general availability of &lt;a href="https://content.pivotal.io/blog/spring-cloud-services-3-0-includes-new-and-improved-config-server"&gt;Spring Cloud Services 3.0&lt;/a&gt;, which involved a major redesign of the previous architecture used in that project. As detailed in the related blog post, Spring Cloud Services has moved to the latest versions of Spring Framework and Spring Boot, and is now built on a Reactive programming model and Spring WebFlux. Two key components of this redesign are offered as open source Spring Cloud projects.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The first project is &lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Spring Cloud Open Service Broker&lt;/a&gt;. This project has been available for some time; however, the recent &lt;a href="https://spring.io/blog/2019/04/29/spring-cloud-open-service-broker-3-0-0-released"&gt;3.0.0 release&lt;/a&gt; has itself been redesigned to incorporate a Reactive programming model and updated to support Spring WebFlux.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The second project, which is being introduced today, is &lt;a href="https://spring.io/projects/spring-cloud-app-broker/"&gt;Spring Cloud App Broker&lt;/a&gt;. Spring Cloud App Broker represents an abstraction of a significant piece of the underlying architecture in Spring Cloud Services, and we are pleased to announce that Spring Cloud App Broker 1.0.1 is now available.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="background"&gt;&lt;a class="anchor" href="#background"&gt;&lt;/a&gt;Background&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://www.openservicebrokerapi.org"&gt;Open Service Broker API&lt;/a&gt; project allows developers to deliver services to applications running within cloud native platforms such as Cloud Foundry, Kubernetes, and OpenShift. To date, the only option for building a Spring Boot based service broker application has been to add the &lt;a href="https://spring.io/projects/spring-cloud-open-service-broker"&gt;Spring Cloud Open Service Broker&lt;/a&gt; starter to your project, include the required configuration, and implement the required interfaces. Spring Cloud Open Service Broker is less opinionated about service broker implementation and leaves many of those decisions to the developer, requiring the developer to implement all of the service broker application logic themselves.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="introduction"&gt;&lt;a class="anchor" href="#introduction"&gt;&lt;/a&gt;Introduction&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Spring Cloud App Broker is also a framework for building Spring Boot applications that implement the Open Service Broker API. It provides a framework based on Spring Boot that enables the developer to quickly create a service broker that deploys applications and services to the platform when managed services are provisioned. It builds on Spring Cloud Open Service Broker by offering opinionated implementations of the Spring Cloud Open Service Broker interfaces.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;What does this mean in practical terms? Imagine that the managed services that are deployed by a service broker have a dependency on additional services or applications. Utilizing App Broker configuration properties, these services and applications can be declared and the dependencies defined. When the service broker receives a request to provision a new service instance, App Broker will manage the deployment or provisioning of dependent apps and services, and bind those services and apps where appropriate. Conversely, when a request is received to delete a service instance, App Broker will unbind and delete any dependent services and applications that were previously provisioned.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="getting-started"&gt;&lt;a class="anchor" href="#getting-started"&gt;&lt;/a&gt;Getting Started&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Create a Spring Boot application and include the Spring Cloud App Broker dependency in the application&amp;#8217;s build file.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="maven-dependencies"&gt;&lt;a class="anchor" href="#maven-dependencies"&gt;&lt;/a&gt;Maven Dependencies&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Include the following in your application&amp;#8217;s &lt;code&gt;pom.xml&lt;/code&gt; file:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;dependencies&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-cloud-starter-app-broker-cloudfoundry&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;1.0.1.RELEASE&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-&amp;lt;/dependencies&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="gradle-dependencies"&gt;&lt;a class="anchor" href="#gradle-dependencies"&gt;&lt;/a&gt;Gradle Dependencies&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Include the following in your application&amp;#8217;s &lt;code&gt;build.gradle&lt;/code&gt; file:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-groovy" data-lang="groovy"&gt;dependencies {
-    compile 'org.springframework.cloud:spring-cloud-starter-app-broker-cloudfoundry:1.0.1.RELEASE'
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="configuring-the-service-broker"&gt;&lt;a class="anchor" href="#configuring-the-service-broker"&gt;&lt;/a&gt;Configuring the Service Broker&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The service broker is configured using Spring Boot externalized configuration, supplied using a YAML or Java Properties file (for example, you can provide configuration in the &lt;code&gt;application.yml&lt;/code&gt; file). Because Spring Cloud App Broker builds on Spring Cloud Open Service Broker, you must provide Spring Cloud Open Service Broker configuration in order to use Spring Cloud App Broker.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Include Spring Cloud Open Service Broker configuration using properties under &lt;code&gt;spring.cloud.openservicebroker&lt;/code&gt;, as in the following example:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-yml" data-lang="yml"&gt;spring:
-  cloud:
-    openservicebroker:
-      catalog:
-        services:
-        - name: example
-          id: ebca66fd-461d-415b-bba3-5e379d671c88
-          description: A useful service
-          bindable: true
-          tags:
-          - example
-          plans:
-          - name: standard
-            id: e19e6bc3-37c1-4478-b70f-c7157ebbb28c
-            description: A standard plan
-            free: true&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Include Spring Cloud App Broker configuration using properties under &lt;code&gt;spring.cloud.appbroker&lt;/code&gt;, as in the following example:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-yml" data-lang="yml"&gt;spring:
-  cloud:
-    appbroker:
-      services:
-        - service-name: example
-          plan-name: standard
-          apps:
-            - name: example-service-app1
-              path: classpath:app1.jar
-            - name: example-service-app2
-              path: classpath:app2.jar
-      deployer:
-        cloudfoundry:
-          api-host: api.sys.example.com
-          api-port: 443
-          username: admin
-          password: adminpass
-          default-org: test
-          default-space: development&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="service-instances"&gt;&lt;a class="anchor" href="#service-instances"&gt;&lt;/a&gt;Service Instances&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Backing apps and dependent services can be configured for one or more services that are managed by a service broker by using the following properties.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="app-deployment-properties"&gt;&lt;a class="anchor" href="#app-deployment-properties"&gt;&lt;/a&gt;App Deployment Properties&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Properties for a backing app can be configured as default for all app deployments, or each service&amp;#8217;s backing app deployment may be configured individually. See the &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_properties_configuration"&gt;reference documentation&lt;/a&gt; for a more comprehensive list of available properties.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-yml" data-lang="yml"&gt;spring:
-  cloud:
-    appbroker:
-      deployer:
-        cloudfoundry:
-          &lt;strong&gt;properties:&lt;/strong&gt;
-            &lt;strong&gt;memory: 1G&lt;/strong&gt;
-            &lt;strong&gt;health-check: http&lt;/strong&gt;
-            &lt;strong&gt;health-check-http-endpoint: /health&lt;/strong&gt;
-            &lt;strong&gt;health-check-timeout: 180&lt;/strong&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Set overriding values for a specific service in the service&amp;#8217;s configuration under &lt;code&gt;spring.cloud.appbroker.services.*&lt;/code&gt;, as shown in the following example:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-yml" data-lang="yml"&gt;spring:
-  cloud:
-    appbroker:
-      services:
-        - service-name: example
-          plan-name: standard
-          apps:
-            - name: example-service-app1
-              path: classpath:app1.jar
-              &lt;strong&gt;properties:&lt;/strong&gt;
-                &lt;strong&gt;memory: 2G&lt;/strong&gt;
-                &lt;strong&gt;count: 2&lt;/strong&gt;
-                &lt;strong&gt;no-route: true&lt;/strong&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect4"&gt;
-&lt;h5 id="service-configuration"&gt;&lt;a class="anchor" href="#service-configuration"&gt;&lt;/a&gt;Service Configuration&lt;/h5&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;A backing app may require one or more dependent services. For example, an app may require the use of a MySQL database. App Broker will create any configured services and bind them to the associated app. Services are configured using properties under &lt;code&gt;services&lt;/code&gt; for the deployed app, as in the following example:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-yml" data-lang="yml"&gt;spring:
-  cloud:
-    appbroker:
-      services:
-        - service-name: example
-          plan-name: standard
-          apps:
-            - name: example-service-app1
-              path: classpath:app1.jar
-              &lt;strong&gt;services:&lt;/strong&gt;
-              &lt;strong&gt;- service-instance-name: example-db&lt;/strong&gt;
-                &lt;strong&gt;name: mysql&lt;/strong&gt;
-                &lt;strong&gt;plan: small&lt;/strong&gt;
-                &lt;strong&gt;parameters:&lt;/strong&gt;
-                  &lt;strong&gt;param-key: param-value&lt;/strong&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="further-customization"&gt;&lt;a class="anchor" href="#further-customization"&gt;&lt;/a&gt;Further Customization&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In addition to the supported configuration described above, Spring Cloud App Broker offers further methods of customizing the process of provisioning service instances. For example, App Broker can &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_credentials_generation"&gt;generate and assign unique credentials&lt;/a&gt; for each backing app deployment through the use of customized credential providers.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Workflows are also provided for the various stages of &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_creating_a_service_instance"&gt;creating&lt;/a&gt;, &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_updating_a_service_instance"&gt;updating&lt;/a&gt;, and &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_deleting_a_service_instance"&gt;deleting&lt;/a&gt; service instances, and for &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_creating_a_service_binding"&gt;creating&lt;/a&gt; and &lt;a href="https://docs.spring.io/spring-cloud-app-broker/docs/current/reference/html5/#_deleting_a_service_binding"&gt;deleting&lt;/a&gt; service instance bindings. For example, &lt;code&gt;CreateServiceInstanceWorkflow&lt;/code&gt; can be implemented and configured as a Spring Bean within the application to hook additional functionality into the request to create a service instance. This may be as simple as processing specific logging requirements.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="conclusion"&gt;&lt;a class="anchor" href="#conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Building functional service brokers can be challenging, but with the availability of projects such as Spring Cloud Open Service Broker and Spring Cloud App Broker, we are hoping to reduce the amount of boilerplate code and enable you to more quickly build your own service broker.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>

@@ -57,6 +57,7 @@ public class DesignTacoController {
 	public Order order() {
 		return new Order();
 	}
+	
 
 	/* Ensured that the taco objectis created in model */
 	@ModelAttribute(name = "taco")
@@ -76,6 +77,7 @@ public class DesignTacoController {
 
 		// Getting all the values from the Type enum in the ingredient class and storing
 		// them in an array.
+		
 		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
 		Type[] types = Ingredient.Type.values();

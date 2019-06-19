@@ -1,15 +1,11 @@
 package tacos.data;
 
+import org.springframework.data.repository.CrudRepository;
+
 import tacos.Ingredient;
 
-public interface IngredientRepository {
+
+/*it’s first parameter is the entity type that the repository must persist and second parameter is the type of the entity ID property. */
+public interface IngredientRepository extends CrudRepository<Ingredient,String>{
 	
-	//method to find all the ingredients
-	Iterable<Ingredient> findAll();
-	
-	//method to search only specific ingredient by providing it's id as an argument
-	Ingredient findOne(String id);
-	
-	//method to save the ingredient to the database
-	Ingredient save(Ingredient ingredient);
 }
