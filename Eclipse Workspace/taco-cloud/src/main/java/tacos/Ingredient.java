@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+
 //generates getters, hashcode(), toString(),constructors, setters, equals()
 @Data
 

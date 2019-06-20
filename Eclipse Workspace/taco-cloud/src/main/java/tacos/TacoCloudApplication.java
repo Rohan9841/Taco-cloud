@@ -17,7 +17,10 @@ public class TacoCloudApplication {
     SpringApplication.run(TacoCloudApplication.class, args);
   }
 
-  
+	/*
+	 * indicates that the object this method returns should be added as bean in the
+	 * application context
+	 */
   @Bean
   
 	/* IngredientRepository is injected to the method parameter */

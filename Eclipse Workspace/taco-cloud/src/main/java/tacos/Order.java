@@ -1,6 +1,5 @@
 package tacos;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,9 +31,7 @@ import lombok.Data;
  * named Order, but Order is a reserved word in sql and could cause problem.
  */
 @Table(name = "Taco_Order")
-public class Order implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Order{
 	/*
 	 * indicates id as a property that uniquely identifies this entity in the
 	 * database

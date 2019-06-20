@@ -39,4 +39,19 @@
 		<item key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL" value="true"/>
 		<item key="EditorSelectionDialog.STORE_ID_DESCR" value="Visual Studio Code Source File"/>
 	</section>
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.ui.wizards.export.FileSystem"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="FileSystemExportWizard">
+		<item key="WizardFileSystemResourceExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID" value="true"/>
+		<item key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
+		<item key="WizardFileSystemResourceExportPage1.STORE_RESOLVE_LINKED_RESOURCES_ID" value="false"/>
+		<list key="WizardFileSystemResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Chapter 3 - Working with Data\JPA\Eclipse Workspace"/>
+			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Chapter 3 - Working with Data\JDBC\Eclipse Workspace"/>
+		</list>
+	</section>
 </section>
