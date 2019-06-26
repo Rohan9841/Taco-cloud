@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item key="dialogHeight" value="780"/>
-		<item key="dialogWidth" value="488"/>
+		<item key="dialogHeight" value="-1"/>
+		<item key="dialogWidth" value="-1"/>
 		<list key="orderedElements">
-			<item value="org.eclipse.jdt.ui.PackageExplorer"/>
-			<item value="org.eclipse.jdt.ui.preferences.CodeAssistPreferencePage"/>
-			<item value="org.eclipse.jdt.ui.preferences.CodeAssistPreferenceAdvanced"/>
 		</list>
 		<list key="orderedProviders">
-			<item value="org.eclipse.e4.ui.parts"/>
-			<item value="org.eclipse.ui.preferences"/>
-			<item value="org.eclipse.ui.preferences"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
-			<item value="1"/>
-			<item value="1"/>
 		</list>
 		<list key="textArray">
-			<item value="package ex"/>
-			<item value="content assist"/>
-			<item value=" content assist"/>
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">

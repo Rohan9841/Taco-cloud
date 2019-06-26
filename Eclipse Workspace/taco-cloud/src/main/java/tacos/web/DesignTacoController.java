@@ -19,7 +19,6 @@ import tacos.Ingredient;
 import tacos.Taco;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
-import tacos.Ingredient.Type;
 import tacos.Order;
 
 /* Identify this class as a controller and mark it for component scanning */
@@ -74,20 +73,19 @@ public class DesignTacoController {
 		// creating new objects of Ingredient.java class and storing the objects in a
 		// list
 		List<Ingredient> ingredients = new ArrayList<>();
-
-		// Getting all the values from the Type enum in the ingredient class and storing
-		// them in an array.
+		List<String> ingredientType = new ArrayList<>();
 		
 		ingredientRepo.findAll().forEach(i -> ingredients.add(i));
+		ingredientRepo.findAllTypes().forEach(j->ingredientType.add(j));
 
-		Type[] types = Ingredient.Type.values();
+		
 
 		// for each elements in the types array
-		for (Type type : types) {
+		for (String type : ingredientType) {
 
 			// add model attribute(wrap, new ingredient object with type wrap) etc which can
 			// directly be accessed by thymeleaf
-			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+			model.addAttribute(type.toLowerCase(), filterByType(ingredients, type));
 		}
 	}
 
@@ -100,8 +98,10 @@ public class DesignTacoController {
 
 	// returns all the objects from ingredients list that has type equal to the type
 	// in the argument
-	private List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-		return ingredients.stream().filter(x -> x.getType().equals(type)) // ingredients.getType = type where getTYpe is
+	private List<Ingredient> filterByType(List<Ingredient> ingredients, String type) {
+		return ingredients
+				.stream()
+				.filter(x -> x.getType().equals(type)) // ingredients.getType = type where getTYpe is
 																			// automatically managed by Lombok
 																			// annotation
 				.collect(Collectors.toList());// converts stream into a list
@@ -121,6 +121,7 @@ public class DesignTacoController {
 	 * The design object comes from request parameters which will have name and ingredients set by the users
 	 * 
 	 */
+	
 	public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
 
 		// if there is an error then just return the 'design' view

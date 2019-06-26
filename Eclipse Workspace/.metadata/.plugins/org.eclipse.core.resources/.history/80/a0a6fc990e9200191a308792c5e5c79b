@@ -1,1 +1,0 @@
-spring.datasource.schema=file:scripts/schema.sql

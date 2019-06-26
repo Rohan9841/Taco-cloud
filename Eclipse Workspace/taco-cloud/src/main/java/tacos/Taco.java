@@ -38,7 +38,8 @@ public class Taco {
 	
 	//javax validation annotation to make sure that the name field must have at least 5 characters
 	@Size(min = 5, message = "Name must be at least 5 characters long")
-	private String name;
+	private String tacoName;
+	
 	
 	@NotNull
 	/*

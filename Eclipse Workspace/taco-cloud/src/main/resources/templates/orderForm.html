@@ -10,6 +10,7 @@
     <!-- th:action to /orders request mappting from OrderController.java -->
     <!-- ${order} is a model attribute containg new order() object that was set in orderForm() method in OrderController.java-->
     <form method = "POST" th:action = "@{/orders}" th:object = "${order}">
+        <!-- <input type ="hidden" name = "_csrf" th:value = "${_csrf.token}"/> -->
         <h1>Order your taco creations!</h1>
 
         <!-- getting the image tacoCloud.png -->
@@ -87,6 +88,12 @@
         <br/>
 
         <input type = "submit" value = "Submit order"/>
+    </form>
+
+    <!-- When user clicks the button, their session will be cleared and they will be logged out of the application -->
+    <form method = "POST" th:action = "@{/logout}">
+        <!-- <input type ="hidden" name = "_csrf" th:value = "${_csrf.token}"/> -->
+        <input type = "submit" value = "Logout"/>
     </form>
 </body>
 </html>

@@ -18,6 +18,8 @@
         <!-- new Taco() has name and list of ingredients -->
         <form method = "POST" th:object = "${taco}">
 
+            <!-- <input type ="hidden" name = "_csrf" th:value = "${_csrf.token}"/> -->
+
             <!-- If there are any validation error in the ingredients field from Taco class, then display the error message that was written in the Taco class of ingredients field -->
             <span class = "validationError"
                 th:if = "${#fields.hasErrors('ingredients')}"
@@ -75,14 +77,20 @@
 
             <div>
                 <h3>Name your taco creation</h3>
-                <input type = "text" th:field = "*{name}"/>
+                <input type = "text" th:field = "*{tacoName}"/>
                 <span class = "validationError"
-                    th:if = "${#fields.hasErrors('name')}"
-                    th:errors = "*{name}">Name Error</span>
+                    th:if = "${#fields.hasErrors('tacoName')}"
+                    th:errors = "*{tacoName}">Name Error</span>
                 <br/>
 
                 <button>Submit your taco</button>
             </div>
         </form>
+
+        
+    <form method = "POST" th:action = "@{/logout}">
+        <!-- <input type ="hidden" name = "_csrf" th:value = "${_csrf.token}"/> -->
+        <input type = "submit" value = "Logout"/>
+    </form>
     </body>
 </html>

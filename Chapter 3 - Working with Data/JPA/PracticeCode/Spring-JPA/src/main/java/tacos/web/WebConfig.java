@@ -17,6 +17,5 @@ public class WebConfig implements WebMvcConfigurer {
 	//In this case we use registry to specify home as a view that a request of "/" should be forwarded to 
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("home");
-		registry.addViewController("/login").setViewName("login");
 	}
 }
