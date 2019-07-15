@@ -38,6 +38,7 @@
 		<item key="WizardFileSystemResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardFileSystemResourceExportPage1.STORE_RESOLVE_LINKED_RESOURCES_ID" value="false"/>
 		<list key="WizardFileSystemResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Chapter 4 - Securing Spring"/>
 			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Chapter 3 - Working with Data\JPA\Eclipse Workspace"/>
 			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Chapter 3 - Working with Data\JDBC\Eclipse Workspace"/>
 		</list>

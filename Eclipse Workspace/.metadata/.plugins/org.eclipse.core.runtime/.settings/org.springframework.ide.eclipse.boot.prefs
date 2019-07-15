@@ -1,7 +1,10 @@
 eclipse.preferences.version=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-jpa=3
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-rest=2
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.data-rest-hal=2
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.devtools=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.h2=1
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.hateoas=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.jdbc=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.lombok=1
 org.springframework.ide.eclipse.boot.wizard.PopularityTracker.security=2
