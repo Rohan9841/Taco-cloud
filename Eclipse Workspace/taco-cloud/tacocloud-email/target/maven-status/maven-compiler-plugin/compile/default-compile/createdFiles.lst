@@ -1,0 +1,10 @@
+tacos\email\EmailProperties.class
+tacos\email\OrderSubmitMessageHandler.class
+tacos\email\TacoOrderEmailIntegrationConfig.class
+tacos\email\Ingredient.class
+tacos\email\Taco.class
+tacos\email\Order.class
+tacos\email\ApiProperties.class
+tacos\email\TacoEmailApplication.class
+META-INF\spring-configuration-metadata.json
+tacos\email\EmailToOrderTransformer.class

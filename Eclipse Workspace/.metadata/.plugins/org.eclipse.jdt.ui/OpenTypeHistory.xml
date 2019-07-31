@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/spring-webmvc\/5.1.7.RELEASE\/spring-webmvc-5.1.7.RELEASE.jar&lt;org.springframework.web.servlet.config.annotation(WebMvcConfigurer.class[WebMvcConfigurer" modifiers="1537" timestamp="1558308513077"/>
-<typeInfo handle="=taco-cloud/src\/main\/java&lt;tacos.data{IngredientRepository.java[IngredientRepository" modifiers="513" timestamp="1561053806555"/>
-<typeInfo handle="=taco-cloud/src\/main\/java&lt;tacos.data{TacoRepository.java[TacoRepository" modifiers="513" timestamp="1562774341640"/>
-<typeInfo handle="=taco-cloud/src\/main\/java&lt;tacos.data{OrderRepository.java[OrderRepository" modifiers="513" timestamp="1560956553051"/>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/security\/spring-security-config\/5.1.5.RELEASE\/spring-security-config-5.1.5.RELEASE.jar&lt;org.springframework.security.config.annotation.web(WebSecurityConfigurer.class[WebSecurityConfigurer" modifiers="1537" timestamp="1561052554480"/>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/security\/spring-security-core\/5.1.5.RELEASE\/spring-security-core-5.1.5.RELEASE.jar&lt;org.springframework.security.core.userdetails(UserDetailsService.class[UserDetailsService" modifiers="1537" timestamp="1561052555178"/>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/security\/spring-security-core\/5.1.5.RELEASE\/spring-security-core-5.1.5.RELEASE.jar&lt;org.springframework.security.provisioning(UserDetailsManager.class[UserDetailsManager" modifiers="1537" timestamp="1561052555178"/>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/hateoas\/spring-hateoas\/0.25.1.RELEASE\/spring-hateoas-0.25.1.RELEASE.jar&lt;org.springframework.hateoas.mvc(ResourceAssemblerSupport.class[ResourceAssemblerSupport" modifiers="1057" timestamp="1562084927416"/>
-<typeInfo handle="=taco-cloud/C:\/Users\/Nisha Dangol\/.m2\/repository\/org\/springframework\/hateoas\/spring-hateoas\/0.25.1.RELEASE\/spring-hateoas-0.25.1.RELEASE.jar&lt;org.springframework.hateoas(ResourceSupport.class[ResourceSupport" modifiers="33" timestamp="1562084927416"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

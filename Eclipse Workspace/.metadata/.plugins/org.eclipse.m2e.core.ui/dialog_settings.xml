@@ -6,6 +6,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Projects\Spring in Action\Eclipse Workspace\taco-cloud"/>
 			<item value="C:\Users\Nisha Dangol\Desktop\Side study\Spring Book\Practice"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -30,10 +31,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="org.tacocloud.email"/>
 		</list>
 		<list key="groupId">
+			<item value="sia"/>
 		</list>
 		<list key="artifactId">
+			<item value="tacocloud-email"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -44,15 +48,18 @@
 			<item value="[name]"/>
 		</list>
 		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
+			<item value="0.0.9-SNAPSHOT"/>
 		</list>
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="sia"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="tacocloud-email"/>
+			<item value="taco-cloud"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -63,7 +70,35 @@
 			<item value="[name]"/>
 		</list>
 		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
+			<item value="0.0.9-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenModuleWizardParentPage">
+		<list key="moduleName">
+			<item value="tacocloud-email"/>
+			<item value="asd"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
+		<list key="archetypeGroupId">
+			<item value="sia"/>
+		</list>
+		<list key="archetypeArtifactId">
+			<item value="web"/>
+		</list>
+		<list key="archetypeVersion">
+			<item value="0.0.9-SNAPSHOT"/>
+		</list>
+		<list key="repositoryUrl">
+			<item value=""/>
 		</list>
 	</section>
 </section>
